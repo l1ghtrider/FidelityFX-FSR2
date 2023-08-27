@@ -844,6 +844,7 @@ void Renderer::OnRender(UIState* pState, const Camera& Cam, SwapChain* pSwapChai
     D3D12_CPU_DESCRIPTOR_HANDLE     RTVCurrentOutput = pGBuffer->m_HDRRTV.GetCPU();
     CBV_SRV_UAV                     UAVCurrentOutput = pGBuffer->m_HDRUAV;
 
+    //l1ght :! fsr passes begin
     // Always use upscale context, if we don't want one, Spatial can skip upscale (but still do TAA and/or RCAS)
     if(bUseUpscale || bUseTaaRcas)
     {
@@ -867,7 +868,7 @@ void Renderer::OnRender(UIState* pState, const Camera& Cam, SwapChain* pSwapChai
         upscaleSetup.resolvedColorResource = m_displayOutput.GetResource();
 
         pCmdLst1->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(m_displayOutput.GetResource(), D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_UNORDERED_ACCESS));
-
+        //l1ght : UpscaleContext_FSR2_API(FSR2)/UpscaleContext_Spatial(FSR1/TAA)
         m_pUpscaleContext->Draw(pCmdLst1, upscaleSetup, pState);
 
         pCmdLst1->ResourceBarrier(1, &CD3DX12_RESOURCE_BARRIER::Transition(m_displayOutput.GetResource(), D3D12_RESOURCE_STATE_UNORDERED_ACCESS, D3D12_RESOURCE_STATE_RENDER_TARGET));

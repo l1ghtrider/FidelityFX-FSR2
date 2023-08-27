@@ -759,6 +759,7 @@ static void scheduleDispatch(FfxFsr2Context_Private* context, const FfxFsr2Dispa
     context->contextDescription.callbacks.fpScheduleGpuJob(&context->contextDescription.callbacks, &dispatchJob);
 }
 
+//l1ght :! core function ffxFsr2ContextDispatch <- UpscaleContext_FSR2_API::Draw
 static FfxErrorCode fsr2Dispatch(FfxFsr2Context_Private* context, const FfxFsr2DispatchDescription* params)
 {
     if ((context->contextDescription.flags & FFX_FSR2_ENABLE_DEBUG_CHECKING) == FFX_FSR2_ENABLE_DEBUG_CHECKING)
@@ -785,6 +786,8 @@ static FfxErrorCode fsr2Dispatch(FfxFsr2Context_Private* context, const FfxFsr2D
         memcpy(clearJob.clearJobDescriptor.color, clearValuesToZeroFloat, 4 * sizeof(float));
 
         clearJob.clearJobDescriptor.target = context->srvResources[FFX_FSR2_RESOURCE_IDENTIFIER_LOCK_STATUS_1];
+        //l1ght : ffx_fsr2_dx12.cpp outInterface->fpScheduleGpuJob = ScheduleGpuJobDX12; ->
+        //l1ght : (BackendContext_DX12*)backendInterface->scratchBuffer->gpuJobs got scheduled
         context->contextDescription.callbacks.fpScheduleGpuJob(&context->contextDescription.callbacks, &clearJob);
         clearJob.clearJobDescriptor.target = context->srvResources[FFX_FSR2_RESOURCE_IDENTIFIER_LOCK_STATUS_2];
         context->contextDescription.callbacks.fpScheduleGpuJob(&context->contextDescription.callbacks, &clearJob);

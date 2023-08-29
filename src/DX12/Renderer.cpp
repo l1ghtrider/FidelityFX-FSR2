@@ -844,7 +844,6 @@ void Renderer::OnRender(UIState* pState, const Camera& Cam, SwapChain* pSwapChai
     D3D12_CPU_DESCRIPTOR_HANDLE     RTVCurrentOutput = pGBuffer->m_HDRRTV.GetCPU();
     CBV_SRV_UAV                     UAVCurrentOutput = pGBuffer->m_HDRUAV;
 
-    //l1ght :! fsr passes begin
     // Always use upscale context, if we don't want one, Spatial can skip upscale (but still do TAA and/or RCAS)
     if(bUseUpscale || bUseTaaRcas)
     {

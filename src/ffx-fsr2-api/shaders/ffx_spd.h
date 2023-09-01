@@ -19,7 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-//l1ght : dispatch every 64x64 as a thread
+//l1ght : SPD dispatch every 64x64 as a thread
 #ifdef FFX_CPU
 FFX_STATIC void SpdSetup(FfxUInt32x2    dispatchThreadGroupCountXY,  // CPU side: dispatch thread group count xy
                          FfxUInt32x2    workGroupOffset,             // GPU side: pass in as constant

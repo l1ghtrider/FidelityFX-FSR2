@@ -1391,6 +1391,7 @@ static FfxErrorCode executeGpuJobCompute(BackendContext_DX12* backendContext, Ff
     {
         for (uint32_t currentRootConstantIndex = 0; currentRootConstantIndex < job->computeJobDescriptor.pipeline.constCount; ++currentRootConstantIndex) {
             const uint32_t currentCbSlotIndex = job->computeJobDescriptor.pipeline.cbResourceBindings[currentRootConstantIndex].slotIndex;
+            //l1ght set L"cbFSR2" in job->computeJobDescriptor.cbs[currentCbSlotIndex].data
             dx12CommandList->SetComputeRoot32BitConstants(descriptorTableIndex + currentCbSlotIndex, job->computeJobDescriptor.cbs[currentCbSlotIndex].uint32Size, job->computeJobDescriptor.cbs[currentCbSlotIndex].data, 0);
         }
     }

@@ -333,6 +333,7 @@ static void fsr2DebugCheckDispatch(FfxFsr2Context_Private* context, const FfxFsr
     }
 }
 
+//l1ght cbResourceBindingTable L"cbFSR2" <- inoutPipeline->cbResourceBindings
 static FfxErrorCode patchResourceBindings(FfxPipelineState* inoutPipeline)
 {
     for (uint32_t srvIndex = 0; srvIndex < inoutPipeline->srvCount; ++srvIndex)
@@ -1015,6 +1016,7 @@ static FfxErrorCode fsr2Dispatch(FfxFsr2Context_Private* context, const FfxFsr2D
     genReactiveConsts.autoReactiveMax = params->autoReactiveMax;
 
     // initialize constantBuffers data
+    //l1ght init cbFSR2
     memcpy(&globalFsr2ConstantBuffers[FFX_FSR2_CONSTANTBUFFER_IDENTIFIER_FSR2].data,        &context->constants,        globalFsr2ConstantBuffers[FFX_FSR2_CONSTANTBUFFER_IDENTIFIER_FSR2].uint32Size * sizeof(uint32_t));
     memcpy(&globalFsr2ConstantBuffers[FFX_FSR2_CONSTANTBUFFER_IDENTIFIER_SPD].data,         &luminancePyramidConstants, globalFsr2ConstantBuffers[FFX_FSR2_CONSTANTBUFFER_IDENTIFIER_SPD].uint32Size  * sizeof(uint32_t));
     memcpy(&globalFsr2ConstantBuffers[FFX_FSR2_CONSTANTBUFFER_IDENTIFIER_RCAS].data,        &rcasConsts,                globalFsr2ConstantBuffers[FFX_FSR2_CONSTANTBUFFER_IDENTIFIER_RCAS].uint32Size * sizeof(uint32_t));

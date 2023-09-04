@@ -37,6 +37,7 @@ typedef struct Fsr2Constants {
     float                       motionVectorScale[2];
     float                       downscaleFactor[2];
     float                       motionVectorJitterCancellation[2];
+    //l1ght preExposure is only a constant
     float                       preExposure;
     float                       previousFramePreExposure;
     float                       tanHalfFOV;

@@ -197,7 +197,7 @@ FfxFloat32x4 SpdReduceLoadSourceImage4(FfxUInt32x2 i0, FfxUInt32x2 i1, FfxUInt32
     return SpdReduce4(v0, v1, v2, v3);
 }
 
-//l1ght SpdReduceLoadSourceImage ffx_spd.h SpdDownsampleMips_0_1_LDS
+//l1ght spd : SpdReduceLoadSourceImage ffx_spd.h SpdDownsampleMips_0_1_LDS
 FfxFloat32x4 SpdReduceLoadSourceImage(FfxUInt32x2 base, FfxUInt32 slice)
 {
 #ifdef SPD_LINEAR_SAMPLER
@@ -255,7 +255,7 @@ void SpdDownsampleMips_0_1_Intrinsics(FfxUInt32 x, FfxUInt32 y, FfxUInt32x2 work
     }
 }
 
-//l1ght ffx_spd.h SpdDownsampleMips_0_1 <- 
+//l1ght spd : ffx_spd.h SpdDownsampleMips_0_1 <- 
 void SpdDownsampleMips_0_1_LDS(FfxUInt32 x, FfxUInt32 y, FfxUInt32x2 workGroupID, FfxUInt32 localInvocationIndex, FfxUInt32 mip, FfxUInt32 slice)
 {
     FfxFloat32x4 v[4];
@@ -304,7 +304,7 @@ void SpdDownsampleMips_0_1_LDS(FfxUInt32 x, FfxUInt32 y, FfxUInt32x2 workGroupID
     }
 }
 
-//l1ght
+//l1ght spd : SpdDownsampleMips_0_1 ffx_spd.h SpdDownsample
 void SpdDownsampleMips_0_1(FfxUInt32 x, FfxUInt32 y, FfxUInt32x2 workGroupID, FfxUInt32 localInvocationIndex, FfxUInt32 mip, FfxUInt32 slice)
 {
 #ifdef SPD_NO_WAVE_OPERATIONS
@@ -472,6 +472,7 @@ void SpdDownsampleMips_6_7(FfxUInt32 x, FfxUInt32 y, FfxUInt32 mips, FfxUInt32 s
     SpdStoreIntermediate(x, y, v);
 }
 
+//l1ght spd : SpdDownsampleNextFour( ffx_spd.h SpdDownsample(
 void SpdDownsampleNextFour(FfxUInt32 x, FfxUInt32 y, FfxUInt32x2 workGroupID, FfxUInt32 localInvocationIndex, FfxUInt32 baseMip, FfxUInt32 mips, FfxUInt32 slice)
 {
     if (mips <= baseMip)
@@ -495,12 +496,13 @@ void SpdDownsampleNextFour(FfxUInt32 x, FfxUInt32 y, FfxUInt32x2 workGroupID, Ff
     SpdDownsampleMip_5(workGroupID, localInvocationIndex, baseMip + 3, slice);
 }
 
+//l1ght spd : SpdDownsample(
 void SpdDownsample(FfxUInt32x2 workGroupID, FfxUInt32 localInvocationIndex, FfxUInt32 mips, FfxUInt32 numWorkGroups, FfxUInt32 slice)
 {
     FfxUInt32x2        sub_xy = ffxRemapForWaveReduction(localInvocationIndex % 64);
     FfxUInt32 x      = sub_xy.x + 8 * ((localInvocationIndex >> 6) % 2);
     FfxUInt32 y      = sub_xy.y + 8 * ((localInvocationIndex >> 7));
-    //l1ght SpdDownsampleMips_0_1_LDS -> 
+    //l1ght spd : SpdDownsampleMips_0_1_LDS -> 
     SpdDownsampleMips_0_1(x, y, workGroupID, localInvocationIndex, mips, slice);
 
     SpdDownsampleNextFour(x, y, workGroupID, localInvocationIndex, 2, mips, slice);

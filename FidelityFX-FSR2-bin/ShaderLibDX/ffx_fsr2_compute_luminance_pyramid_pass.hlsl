@@ -60,7 +60,7 @@
     }
 #endif
 
-//l1ght SPD_LoadExposureBuffer()
+//l1ght spd : SPD_LoadExposureBuffer()
 FfxFloat32x2 SPD_LoadExposureBuffer()
 {
     return rw_auto_exposure[FfxInt32x2(0,0)];

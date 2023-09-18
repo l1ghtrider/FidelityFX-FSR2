@@ -399,7 +399,7 @@ FfxBoolean IsOnScreen(FFX_MIN16_I2 pos, FFX_MIN16_I2 size)
 }
 #endif
 
-//l1ght ComputeAutoExposureFromLavg ffx_fsr2_compute_luminance_pyramid.h void SpdStore( 
+//l1ght spd : ComputeAutoExposureFromLavg ffx_fsr2_compute_luminance_pyramid.h void SpdStore( 
 FfxFloat32 ComputeAutoExposureFromLavg(FfxFloat32 Lavg)
 {
     Lavg = exp(Lavg);

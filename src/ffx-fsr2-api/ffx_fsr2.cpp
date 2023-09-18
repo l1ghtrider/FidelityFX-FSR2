@@ -405,7 +405,7 @@ static FfxErrorCode createPipelineStates(FfxFsr2Context_Private* context)
 
     // New interface: will handle RootSignature in backend
     // set up pipeline descriptor (basically RootSignature and binding)
-    //l1ght : comute shader register here
+    //l1ght :! compute shader registered here (just search the names in shaders)
     FFX_VALIDATE(context->contextDescription.callbacks.fpCreatePipeline(&context->contextDescription.callbacks, FFX_FSR2_PASS_COMPUTE_LUMINANCE_PYRAMID, &pipelineDescription, &context->pipelineComputeLuminancePyramid));
     FFX_VALIDATE(context->contextDescription.callbacks.fpCreatePipeline(&context->contextDescription.callbacks, FFX_FSR2_PASS_RCAS, &pipelineDescription, &context->pipelineRCAS));
     FFX_VALIDATE(context->contextDescription.callbacks.fpCreatePipeline(&context->contextDescription.callbacks, FFX_FSR2_PASS_GENERATE_REACTIVE, &pipelineDescription, &context->pipelineGenerateReactive));
@@ -1029,7 +1029,7 @@ static FfxErrorCode fsr2Dispatch(FfxFsr2Context_Private* context, const FfxFsr2D
         context->srvResources[FFX_FSR2_RESOURCE_IDENTIFIER_INPUT_REACTIVE_MASK] = context->srvResources[FFX_FSR2_RESOURCE_IDENTIFIER_AUTOREACTIVE];
         context->srvResources[FFX_FSR2_RESOURCE_IDENTIFIER_INPUT_TRANSPARENCY_AND_COMPOSITION_MASK] = context->srvResources[FFX_FSR2_RESOURCE_IDENTIFIER_AUTOCOMPOSITION];
     }
-    //l1ght : dispatch core passes
+    //l1ght :! compute shader dispatched here
     scheduleDispatch(context, params, &context->pipelineComputeLuminancePyramid, dispatchThreadGroupCountXY[0], dispatchThreadGroupCountXY[1]);
     scheduleDispatch(context, params, &context->pipelineReconstructPreviousDepth, dispatchSrcX, dispatchSrcY);
     scheduleDispatch(context, params, &context->pipelineDepthClip, dispatchSrcX, dispatchSrcY);

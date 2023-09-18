@@ -27,7 +27,7 @@ FFX_GROUPSHARED FfxFloat32 spdIntermediateG[16][16];
 FFX_GROUPSHARED FfxFloat32 spdIntermediateB[16][16];
 FFX_GROUPSHARED FfxFloat32 spdIntermediateA[16][16];
 
-//l1ght SpdLoadSourceImage ffx_spd.h SpdReduceLoadSourceImage
+//l1ght spd : SpdLoadSourceImage ffx_spd.h SpdReduceLoadSourceImage
 FfxFloat32x4 SpdLoadSourceImage(FfxFloat32x2 tex, FfxUInt32 slice)
 {
     FfxFloat32x2 fUv = (tex + 0.5f + Jitter()) / RenderSize();
@@ -50,7 +50,7 @@ FfxFloat32x4 SpdLoad(FfxInt32x2 tex, FfxUInt32 slice)
     return SPD_LoadMipmap5(tex);
 }
 
-//l1ght SpdStore ffx_spd.h SpdDownsampleMips_0_1_LDS
+//l1ght spd : SpdStore ffx_spd.h SpdDownsampleMips_0_1_LDS
 void SpdStore(FfxInt32x2 pix, FfxFloat32x4 outValue, FfxUInt32 index, FfxUInt32 slice)
 {
     if (index == LumaMipLevelToUse() || index == 5)
@@ -169,7 +169,7 @@ FfxFloat16x4 SpdReduce4H(FfxFloat16x4 v0, FfxFloat16x4 v1, FfxFloat16x4 v2, FfxF
 
 #include "ffx_spd.h"
 
-//l1ght ffx_fsr_compute_luminance_pyramid_pass.hlsl void CS(uint3 WorkGroupId : SV_GroupID, uint LocalThreadIndex : SV_GroupIndex)
+//l1ght spd : ffx_fsr_compute_luminance_pyramid_pass.hlsl void CS(uint3 WorkGroupId : SV_GroupID, uint LocalThreadIndex : SV_GroupIndex)
 void ComputeAutoExposure(FfxUInt32x3 WorkGroupId, FfxUInt32 LocalThreadIndex)
 {
 #if FFX_HALF

@@ -59,5 +59,6 @@ void CS(
     int iGroupIndex : SV_GroupIndex
 )
 {
+    //l1ght rad : dispatched in pixel size
     ReconstructAndDilate(iDispatchThreadId);
 }

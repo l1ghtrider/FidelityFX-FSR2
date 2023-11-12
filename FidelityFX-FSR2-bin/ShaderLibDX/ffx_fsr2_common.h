@@ -306,6 +306,7 @@ FfxFloat32 RGBToPerceivedLuma(FfxFloat32x3 fLinearRgb)
     FfxFloat32 fLuminance = RGBToLuma(fLinearRgb);
 
     FfxFloat32 fPercievedLuminance = 0;
+    //l1ght rad : https://www.desmos.com/calculator/cyqq0lnsht
     if (fLuminance <= 216.0f / 24389.0f) {
         fPercievedLuminance = fLuminance * (24389.0f / 27.0f);
     }
